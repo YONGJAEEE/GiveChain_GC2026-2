@@ -1,0 +1,30 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract ProfileBook {
+    struct DonorProfile {
+        string name;
+        uint256 score;
+    }
+
+    mapping(address => DonorProfile)
+        public profiles;
+
+    function join(
+        string calldata donorName
+    )
+        external
+    {
+        profiles[msg.sender] =
+            DonorProfile(donorName, 0);
+    }
+
+    function addScore(
+        uint256 pointsToAdd
+    )
+        external
+    {
+        profiles[msg.sender].score
+            += pointsToAdd;
+    }
+}
