@@ -3,65 +3,64 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="MetaMask와 Hardhat Local 노드의 GiveChain 연결 상태를 확인하는 Wallet Check" />
+    <meta name="description" content="GiveChain Wallet Check" />
     <title>GiveChain Wallet Check</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <main class="shell">
-      <header class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">GIVECHAIN / WALLET CHECK</p>
-          <h1>지갑과 노드가<br /><span>같은 체인</span>을 보고 있나요?</h1>
-          <p class="intro">MetaMask의 계정·Chain ID와 Hardhat Local JSON-RPC 상태를 한 화면에서 확인합니다. 개인키는 입력하거나 저장하지 않습니다.</p>
-        </div>
-        <div class="hero-actions">
-          <div id="connection-state" class="connection-state" data-state="idle"><span class="status-dot" aria-hidden="true"></span><span id="connection-label">연결 대기</span></div>
-          <button id="connect-button" type="button">MetaMask 연결</button>
-          <button id="switch-network-button" class="secondary" type="button">GiveChain Local 추가</button>
-        </div>
+    <main class="page">
+      <header class="page-header">
+        <p class="label">CH 06 · CH 07 / GIVECHAIN</p>
+        <h1>GiveChain Wallet Check</h1>
+        <p class="lead">MetaMask와 HardHat Local Node가 같은 RPC와 Chain ID를 보고 있는지 확인합니다.</p>
       </header>
 
-      <section class="flow" aria-label="Wallet Check 흐름">
-        <div class="flow-step active"><span>01</span><strong>지갑 승인</strong><small>eth_requestAccounts</small></div>
-        <div class="flow-arrow" aria-hidden="true">→</div>
-        <div class="flow-step"><span>02</span><strong>네트워크 확인</strong><small>eth_chainId</small></div>
-        <div class="flow-arrow" aria-hidden="true">→</div>
-        <div class="flow-step"><span>03</span><strong>노드 상태 점검</strong><small>RPC / Contract</small></div>
+      <section class="card node-summary" aria-labelledby="node-title">
+        <div class="section-title"><div><p class="label">CENTRAL POINT</p><h2 id="node-title">HardHat Local Node</h2></div><span id="node-status" class="status neutral">확인 전</span></div>
+        <dl class="node-grid">
+          <div><dt>RPC URL</dt><dd>http://127.0.0.1:8545</dd></div>
+          <div><dt>Chain ID</dt><dd>31337</dd></div>
+          <div><dt>Hex</dt><dd>0x7a69</dd></div>
+          <div><dt>Currency</dt><dd>ETH</dd></div>
+        </dl>
+        <p class="note">현재 저장소의 <code>npm run node</code> 설정 기준입니다.</p>
       </section>
 
-      <section class="card status-card" aria-labelledby="wallet-title">
-        <div class="section-heading"><div><p class="eyebrow">01 / WALLET + NETWORK</p><h2 id="wallet-title">연결된 상태</h2></div><span id="network-badge" class="badge warning">확인 전</span></div>
-        <div class="status-grid">
-          <div class="status-tile wide"><dt>MetaMask Account</dt><dd id="account-value">연결되지 않음</dd><button id="copy-account-button" class="text-button" type="button" disabled>주소 복사</button></div>
-          <div class="status-tile"><dt>Chain ID</dt><dd id="chain-value">확인 전</dd><span id="chain-expected" class="tile-note">expected 31337 / 0x7a69</span></div>
-          <div class="status-tile"><dt>Account Balance</dt><dd id="balance-value">확인 전</dd><span class="tile-note">eth_getBalance</span></div>
-          <div class="status-tile wide"><dt>RPC Endpoint</dt><dd id="rpc-value">http://127.0.0.1:8545</dd><span id="provider-note" class="tile-note">MetaMask provider 대기</span></div>
-        </div>
-        <div id="wallet-alert" class="inline-alert info" role="status">MetaMask를 연결하면 계정과 Chain ID를 자동으로 읽습니다.</div>
+      <section class="card" aria-labelledby="steps-title">
+        <div class="section-title"><div><p class="label">CHECK FLOW</p><h2 id="steps-title">확인 순서</h2></div></div>
+        <ol class="steps">
+          <li><strong>1. HardHat Node 실행</strong><span><code>npx hardhat node --network hardhatMainnet</code></span></li>
+          <li><strong>2. MetaMask 네트워크 설정</strong><span>RPC URL, Chain ID 31337, ETH</span></li>
+          <li><strong>3. 지갑 연결</strong><span><code>eth_requestAccounts</code>와 <code>eth_chainId</code> 응답 확인</span></li>
+          <li><strong>4. GiveChain 주소 확인</strong><span><code>eth_getCode</code>로 컨트랙트 존재 여부 확인</span></li>
+        </ol>
+      </section>
+
+      <section class="card" aria-labelledby="wallet-title">
+        <div class="section-title"><div><p class="label">METAMASK WALLET</p><h2 id="wallet-title">지갑 주소와 Chain ID</h2></div><span id="wallet-status" class="status neutral">연결 대기</span></div>
+        <div class="actions"><button id="connect-button" type="button">MetaMask 연결</button><button id="switch-network-button" class="secondary" type="button">GiveChain Local 추가</button></div>
+        <dl class="result-grid">
+          <div><dt>Account</dt><dd id="account-value">연결되지 않음</dd></div>
+          <div><dt>Chain ID</dt><dd id="chain-value">확인 전</dd></div>
+          <div><dt>Balance</dt><dd id="balance-value">확인 전</dd></div>
+        </dl>
+        <p id="wallet-message" class="message">MetaMask를 연결하면 현재 계정과 네트워크를 읽습니다.</p>
       </section>
 
       <section class="card" aria-labelledby="rpc-title">
-        <div class="section-heading"><div><p class="eyebrow">02 / JSON-RPC HEALTH</p><h2 id="rpc-title">노드와 컨트랙트 점검</h2></div><span id="rpc-badge" class="badge neutral">실행 전</span></div>
-        <div class="form-grid">
-          <div><label for="rpc-url">RPC URL</label><input id="rpc-url" type="url" value="http://127.0.0.1:8545" autocomplete="off" /></div>
-          <div><label for="contract-address">GiveChain Contract</label><div class="input-with-button"><input id="contract-address" type="text" placeholder="0x..." autocomplete="off" /><button id="save-address-button" class="secondary" type="button">저장</button></div></div>
-        </div>
-        <div class="rpc-actions"><button id="run-check-button" type="button">RPC 점검 실행</button><span class="hint">eth_chainId · eth_blockNumber · eth_getBalance · eth_getCode</span></div>
-        <div id="rpc-results" class="check-list" aria-live="polite"><div class="check-row pending"><span class="check-icon">○</span><span><strong>대기 중</strong><small>RPC 점검을 실행하면 결과가 표시됩니다.</small></span></div></div>
+        <div class="section-title"><div><p class="label">JSON-RPC</p><h2 id="rpc-title">노드 응답 확인</h2></div><button id="run-check-button" type="button">점검 실행</button></div>
+        <div class="field"><label for="contract-address">GiveChain Contract 주소</label><div class="input-row"><input id="contract-address" type="text" placeholder="0x..." autocomplete="off" /><button id="save-address-button" class="secondary" type="button">저장</button></div></div>
+        <ul id="rpc-results" class="rpc-results"><li class="pending">점검 전입니다.</li></ul>
+        <p class="note">확인 메서드: <code>eth_chainId</code> · <code>eth_blockNumber</code> · <code>eth_getBalance</code> · <code>eth_getCode</code></p>
       </section>
 
-      <section class="card" aria-labelledby="campaign-title">
-        <div class="section-heading"><div><p class="eyebrow">03 / GIVECHAIN CONTRACT</p><h2 id="campaign-title">캠페인 확인과 호출</h2></div><span class="badge neutral">MetaMask 서명</span></div>
-        <div class="campaign-read"><form id="read-campaign-form" class="inline-form"><label for="read-campaign-id">캠페인 ID</label><input id="read-campaign-id" type="number" min="0" step="1" value="0" required /><button type="submit">조회</button></form><pre id="campaign-output" class="output" aria-live="polite">지갑과 컨트랙트 주소를 확인한 뒤 캠페인을 조회하세요.</pre></div>
-        <div class="two-column">
-          <section class="sub-card" aria-labelledby="create-title"><p class="eyebrow">CREATE</p><h3 id="create-title">캠페인 생성</h3><form id="create-campaign-form" class="stack-form"><label for="campaign-name">제목</label><input id="campaign-name" value="교육 지원" required /><label for="campaign-goal">목표 ETH</label><input id="campaign-goal" type="text" inputmode="decimal" value="5" required /><label for="beneficiary-address">수혜자 주소</label><input id="beneficiary-address" type="text" placeholder="비우면 연결 계정" /><button type="submit">생성 후 서명</button></form></section>
-          <section class="sub-card" aria-labelledby="actions-title"><p class="eyebrow">ACTIONS</p><h3 id="actions-title">기부와 정산</h3><form id="donate-form" class="stack-form"><label for="donate-id">기부할 캠페인 ID</label><input id="donate-id" type="number" min="0" step="1" value="0" required /><label for="donation-amount">기부 ETH</label><input id="donation-amount" type="text" inputmode="decimal" value="1" required /><button type="submit">기부 후 서명</button></form><div class="small-actions"><button data-action="finalize" type="button">마감</button><button data-action="withdraw" type="button">출금</button><button data-action="refund" type="button">환불</button></div><label for="action-campaign-id">정산/환불 캠페인 ID</label><input id="action-campaign-id" type="number" min="0" step="1" value="0" required /></section>
-        </div>
+      <section class="card reminder" aria-labelledby="reminder-title">
+        <p class="label">REMEMBER</p>
+        <h2 id="reminder-title">같은 주소라도 네트워크가 다르면 상태가 다릅니다.</h2>
+        <p>Account Address와 Chain ID가 함께 같아야 같은 블록체인 상태를 확인하는 것입니다. 이 페이지는 개인키를 요구하지 않습니다.</p>
       </section>
 
-      <section class="card activity-card" aria-labelledby="activity-title"><div class="section-heading"><div><p class="eyebrow">ACTIVITY LOG</p><h2 id="activity-title">실행 기록</h2></div><button id="clear-log-button" class="text-button" type="button">기록 지우기</button></div><ol id="activity-log" class="activity-log" aria-live="polite"></ol></section>
-      <footer class="footer-note"><span>GiveChain Local</span><span>31337 · 0x7a69 · ETH</span><span>개인키를 요구하지 않습니다.</span></footer>
+      <footer><span>GiveChain Wallet Check</span><span>31337 · 0x7a69 · http://127.0.0.1:8545</span></footer>
     </main>
     <script type="module" src="./app.js"></script>
   </body>
