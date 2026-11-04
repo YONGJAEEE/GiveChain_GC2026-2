@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "node": "hardhat node",
+    "deploy:localhost": "hardhat run scripts/deploy.ts --network localhost",
+    "web": "python3 -m http.server 4173 --directory frontend"
   },
   "repository": {
     "type": "git",
@@ -18,6 +22,7 @@
   "homepage": "https://github.com/YONGJAEEE/GiveChain_GC2026-2#readme",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox-mocha-ethers": "^4.0.0",
-    "hardhat": "^3.21.1"
+    "hardhat": "^3.21.1",
+    "solc": "0.8.20"
   }
 }

@@ -10,41 +10,53 @@ import * as Contracts from "./index.js";
 
 declare module "@nomicfoundation/hardhat-ethers/types" {
   interface HardhatEthersHelpers extends HardhatEthersHelpersBase {
-  getContractFactory(name: 'Campaign', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.Campaign__factory>
-getContractFactory(name: 'CampaignDonations', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.CampaignDonations__factory>
+  getContractFactory(name: 'CampaignDonations', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.CampaignDonations__factory>
+getContractFactory(name: 'Campaign', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.Campaign__factory>
 getContractFactory(name: 'CampaignRegistry', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.CampaignRegistry__factory>
 getContractFactory(name: 'CampaignRoster', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.CampaignRoster__factory>
 getContractFactory(name: 'Counter', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.Counter__factory>
-getContractFactory(name: 'ProfileBook', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.ProfileBook__factory>
 getContractFactory(name: 'DonorBook', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.DonorBook__factory>
+getContractFactory(name: 'IGiveChainRefund', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.IGiveChainRefund__factory>
+getContractFactory(name: 'RefundAttacker', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.RefundAttacker__factory>
+getContractFactory(name: 'ProfileBook', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.ProfileBook__factory>
 getContractFactory(name: 'SimpleDonation', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.SimpleDonation__factory>
+getContractFactory(name: 'GiveChain', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.GiveChain__factory>
 
-  getContractAt(name: 'Campaign', address: string | ethers.Addressable, signer?: ethers.Signer): Promise<Contracts.Campaign>
-getContractAt(name: 'CampaignDonations', address: string | ethers.Addressable, signer?: ethers.Signer): Promise<Contracts.CampaignDonations>
+  getContractAt(name: 'CampaignDonations', address: string | ethers.Addressable, signer?: ethers.Signer): Promise<Contracts.CampaignDonations>
+getContractAt(name: 'Campaign', address: string | ethers.Addressable, signer?: ethers.Signer): Promise<Contracts.Campaign>
 getContractAt(name: 'CampaignRegistry', address: string | ethers.Addressable, signer?: ethers.Signer): Promise<Contracts.CampaignRegistry>
 getContractAt(name: 'CampaignRoster', address: string | ethers.Addressable, signer?: ethers.Signer): Promise<Contracts.CampaignRoster>
 getContractAt(name: 'Counter', address: string | ethers.Addressable, signer?: ethers.Signer): Promise<Contracts.Counter>
-getContractAt(name: 'ProfileBook', address: string | ethers.Addressable, signer?: ethers.Signer): Promise<Contracts.ProfileBook>
 getContractAt(name: 'DonorBook', address: string | ethers.Addressable, signer?: ethers.Signer): Promise<Contracts.DonorBook>
+getContractAt(name: 'IGiveChainRefund', address: string | ethers.Addressable, signer?: ethers.Signer): Promise<Contracts.IGiveChainRefund>
+getContractAt(name: 'RefundAttacker', address: string | ethers.Addressable, signer?: ethers.Signer): Promise<Contracts.RefundAttacker>
+getContractAt(name: 'ProfileBook', address: string | ethers.Addressable, signer?: ethers.Signer): Promise<Contracts.ProfileBook>
 getContractAt(name: 'SimpleDonation', address: string | ethers.Addressable, signer?: ethers.Signer): Promise<Contracts.SimpleDonation>
+getContractAt(name: 'GiveChain', address: string | ethers.Addressable, signer?: ethers.Signer): Promise<Contracts.GiveChain>
 
-  deployContract(name: 'Campaign', signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.Campaign>
-deployContract(name: 'CampaignDonations', signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.CampaignDonations>
+  deployContract(name: 'CampaignDonations', signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.CampaignDonations>
+deployContract(name: 'Campaign', signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.Campaign>
 deployContract(name: 'CampaignRegistry', signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.CampaignRegistry>
 deployContract(name: 'CampaignRoster', signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.CampaignRoster>
 deployContract(name: 'Counter', signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.Counter>
-deployContract(name: 'ProfileBook', signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.ProfileBook>
 deployContract(name: 'DonorBook', signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.DonorBook>
+deployContract(name: 'IGiveChainRefund', signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.IGiveChainRefund>
+deployContract(name: 'RefundAttacker', signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.RefundAttacker>
+deployContract(name: 'ProfileBook', signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.ProfileBook>
 deployContract(name: 'SimpleDonation', signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.SimpleDonation>
+deployContract(name: 'GiveChain', signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.GiveChain>
 
-  deployContract(name: 'Campaign', args: any[], signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.Campaign>
-deployContract(name: 'CampaignDonations', args: any[], signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.CampaignDonations>
+  deployContract(name: 'CampaignDonations', args: any[], signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.CampaignDonations>
+deployContract(name: 'Campaign', args: any[], signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.Campaign>
 deployContract(name: 'CampaignRegistry', args: any[], signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.CampaignRegistry>
 deployContract(name: 'CampaignRoster', args: any[], signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.CampaignRoster>
 deployContract(name: 'Counter', args: any[], signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.Counter>
-deployContract(name: 'ProfileBook', args: any[], signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.ProfileBook>
 deployContract(name: 'DonorBook', args: any[], signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.DonorBook>
+deployContract(name: 'IGiveChainRefund', args: any[], signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.IGiveChainRefund>
+deployContract(name: 'RefundAttacker', args: any[], signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.RefundAttacker>
+deployContract(name: 'ProfileBook', args: any[], signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.ProfileBook>
 deployContract(name: 'SimpleDonation', args: any[], signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.SimpleDonation>
+deployContract(name: 'GiveChain', args: any[], signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.GiveChain>
 
     // default types
     getContractFactory(

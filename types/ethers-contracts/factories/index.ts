@@ -2,10 +2,12 @@
 /* tslint:disable */
 /* eslint-disable */
 export * as campaignFlagSol from './CampaignFlag.sol/index.js';
+export * as refundAttackerSol from './RefundAttacker.sol/index.js';
 export { CampaignDonations__factory } from './CampaignDonations__factory.js';
 export { CampaignRegistry__factory } from './CampaignRegistry__factory.js';
 export { CampaignRoster__factory } from './CampaignRoster__factory.js';
 export { Counter__factory } from './Counter__factory.js';
 export { DonorBook__factory } from './DonorBook__factory.js';
+export { GiveChain__factory } from './GiveChain__factory.js';
 export { ProfileBook__factory } from './ProfileBook__factory.js';
 export { SimpleDonation__factory } from './SimpleDonation__factory.js';

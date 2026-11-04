@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="MetaMask로 로컬 GiveChain 컨트랙트에 연결하는 화면"
+    />
+    <title>GiveChain Wallet</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header>
+        <p class="eyebrow">GIVECHAIN / LOCAL WALLET</p>
+        <h1>MetaMask 연결</h1>
+        <p class="intro">
+          Hardhat Local(31337)에 연결해 GiveChain을 직접 호출합니다. 개인키는 이 화면에 입력하지 않습니다.
+        </p>
+      </header>
+
+      <section class="card status-card" aria-labelledby="wallet-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">01 / WALLET</p>
+            <h2 id="wallet-title">지갑과 네트워크</h2>
+          </div>
+          <span id="network-badge" class="badge warning">연결 대기</span>
+        </div>
+        <dl class="status-grid">
+          <div><dt>계정</dt><dd id="account-value">연결되지 않음</dd></div>
+          <div><dt>Chain ID</dt><dd id="chain-value">확인 전</dd></div>
+          <div><dt>RPC</dt><dd>http://127.0.0.1:8545</dd></div>
+        </dl>
+        <div class="actions">
+          <button id="connect-button" type="button">MetaMask 연결</button>
+          <button id="switch-network-button" class="secondary" type="button">
+            Hardhat Local로 전환
+          </button>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="contract-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">02 / CONTRACT</p>
+            <h2 id="contract-title">GiveChain 주소</h2>
+          </div>
+        </div>
+        <label for="contract-address">로컬 배포 주소</label>
+        <div class="address-row">
+          <input id="contract-address" type="text" placeholder="0x..." autocomplete="off" />
+          <button id="save-address-button" class="secondary" type="button">저장</button>
+        </div>
+        <p class="hint">`npm run deploy:localhost` 결과의 GiveChain 주소를 붙여 넣으세요.</p>
+      </section>
+
+      <section class="card" aria-labelledby="campaign-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">03 / READ</p>
+            <h2 id="campaign-title">캠페인 조회</h2>
+          </div>
+        </div>
+        <form id="read-campaign-form" class="inline-form">
+          <label for="read-campaign-id">캠페인 ID</label>
+          <input id="read-campaign-id" type="number" min="0" step="1" value="0" required />
+          <button type="submit">조회</button>
+        </form>
+        <pre id="campaign-output" class="output" aria-live="polite">컨트랙트 주소를 저장한 뒤 조회하세요.</pre>
+      </section>
+
+      <section class="two-column" aria-label="GiveChain 호출">
+        <section class="card" aria-labelledby="create-title">
+          <p class="eyebrow">04 / CREATE</p>
+          <h2 id="create-title">캠페인 생성</h2>
+          <form id="create-campaign-form" class="stack-form">
+            <label for="campaign-name">제목</label>
+            <input id="campaign-name" value="교육 지원" required />
+            <label for="campaign-goal">목표 ETH</label>
+            <input id="campaign-goal" type="text" inputmode="decimal" value="5" required />
+            <label for="beneficiary-address">수혜자 주소</label>
+            <input id="beneficiary-address" type="text" placeholder="비우면 연결 계정" />
+            <button type="submit">생성 후 서명</button>
+          </form>
+        </section>
+
+        <section class="card" aria-labelledby="actions-title">
+          <p class="eyebrow">05 / ACTIONS</p>
+          <h2 id="actions-title">기부와 정산</h2>
+          <form id="donate-form" class="stack-form compact">
+            <label for="donate-id">기부할 캠페인 ID</label>
+            <input id="donate-id" type="number" min="0" step="1" value="0" required />
+            <label for="donation-amount">기부 ETH</label>
+            <input id="donation-amount" type="text" inputmode="decimal" value="1" required />
+            <button type="submit">기부 후 서명</button>
+          </form>
+          <div class="small-actions">
+            <button data-action="finalize" type="button">마감</button>
+            <button data-action="withdraw" type="button">출금</button>
+            <button data-action="refund" type="button">환불</button>
+          </div>
+          <label for="action-campaign-id">정산/환불 캠페인 ID</label>
+          <input id="action-campaign-id" type="number" min="0" step="1" value="0" required />
+        </section>
+      </section>
+
+      <section class="card" aria-labelledby="activity-title">
+        <p class="eyebrow">ACTIVITY</p>
+        <h2 id="activity-title">실행 기록</h2>
+        <ol id="activity-log" class="activity-log" aria-live="polite"></ol>
+      </section>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
