@@ -21,10 +21,10 @@ export { CampaignRegistry__factory } from './factories/CampaignRegistry__factory
 export { CampaignRoster__factory } from './factories/CampaignRoster__factory.js';
 export { Counter__factory } from './factories/Counter__factory.js';
 export { DonorBook__factory } from './factories/DonorBook__factory.js';
+export { ProfileBook__factory } from './factories/ProfileBook__factory.js';
+export { GiveChain__factory } from './factories/GiveChain__factory.js';
 export type { IGiveChainRefund } from './RefundAttacker.sol/IGiveChainRefund.js';
 export { IGiveChainRefund__factory } from './factories/RefundAttacker.sol/IGiveChainRefund__factory.js';
 export type { RefundAttacker } from './RefundAttacker.sol/RefundAttacker.js';
 export { RefundAttacker__factory } from './factories/RefundAttacker.sol/RefundAttacker__factory.js';
-export { ProfileBook__factory } from './factories/ProfileBook__factory.js';
 export { SimpleDonation__factory } from './factories/SimpleDonation__factory.js';
-export { GiveChain__factory } from './factories/GiveChain__factory.js';

@@ -8,6 +8,7 @@
     "test": "hardhat test",
     "node": "hardhat node",
     "deploy:localhost": "hardhat run scripts/deploy.ts --network localhost",
+    "rpc:check": "hardhat run scripts/rpcCheck.ts --network localhost",
     "web": "python3 -m http.server 4173 --directory frontend"
   },
   "repository": {
