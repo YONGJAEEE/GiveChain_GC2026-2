@@ -44,6 +44,13 @@ async function switchNetwork() {
 }
 
 async function rpc(method, params = []) {
+  if (window.ethereum) {
+    try {
+      return await window.ethereum.request({ method, params });
+    } catch (error) {
+      if (window.location.protocol === "https:") throw error;
+    }
+  }
   const response = await fetch(RPC_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ jsonrpc: "2.0", id: Date.now(), method, params }) });
   if (!response.ok) throw new Error(`RPC HTTP ${response.status}`);
   const result = await response.json();
