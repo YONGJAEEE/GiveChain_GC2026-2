@@ -9,5 +9,7 @@ export { CampaignRoster__factory } from './CampaignRoster__factory.js';
 export { Counter__factory } from './Counter__factory.js';
 export { DonorBook__factory } from './DonorBook__factory.js';
 export { GiveChain__factory } from './GiveChain__factory.js';
+export { GiveChainV2__factory } from './GiveChainV2__factory.js';
+export { GiveTokenV2__factory } from './GiveTokenV2__factory.js';
 export { ProfileBook__factory } from './ProfileBook__factory.js';
 export { SimpleDonation__factory } from './SimpleDonation__factory.js';

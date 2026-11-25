@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GiveChain Wallet Check</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <p class="eyebrow">GIVECHAIN / WALLET CHECK</p>
+      <h1>GiveChain Wallet Check</h1>
+      <p class="lead">MetaMask와 HardHat Local Node가 같은 Chain ID를 보고 있는지 확인합니다.</p>
+
+      <section class="network" aria-labelledby="network-title">
+        <h2 id="network-title">MetaMask 네트워크 수동 추가</h2>
+        <dl>
+          <div><dt>Network</dt><dd>GiveChain Local</dd></div>
+          <div><dt>RPC URL</dt><dd>http://127.0.0.1:8545</dd></div>
+          <div><dt>Chain ID</dt><dd>31338</dd></div>
+          <div><dt>Currency</dt><dd>ETH</dd></div>
+        </dl>
+      </section>
+
+      <section class="wallet" aria-labelledby="wallet-title">
+        <h2 id="wallet-title">wallet-check.html</h2>
+        <button id="connect-button" type="button">MetaMask 연결</button>
+        <dl class="result">
+          <div><dt>ACCOUNT</dt><dd id="account-value">0x사용자 MetaMask 주소</dd></div>
+          <div><dt>CHAIN ID</dt><dd id="chain-value">연결 전</dd></div>
+        </dl>
+        <p id="message" class="message">버튼을 눌러 MetaMask 계정과 Chain ID를 확인하세요.</p>
+      </section>
+
+      <section class="expected" aria-labelledby="expected-title">
+        <h2 id="expected-title">EXPECTED BOTH SIDES</h2>
+        <p><code>rpcCheck.ts</code> <strong>0x7a6a</strong> = MetaMask <strong>0x7a6a</strong></p>
+        <p>두 값이 일치하면 MetaMask와 rpcCheck.ts가 같은 노드의 같은 체인을 바라봅니다.</p>
+      </section>
+
+      <pre class="code"><code>const accounts = await window.ethereum.request({
+  method: "eth_requestAccounts"
+});
+
+const chainId = await window.ethereum.request({
+  method: "eth_chainId"
+});</code></pre>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
